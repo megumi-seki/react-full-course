@@ -2,8 +2,7 @@
 // 1. EXTERNAL
 // 2. MODULES
 // 3. INLINE
-
-import Button from "./Button/Button"
+import Button from "./BUtton"
 
 function App() {
   return(
