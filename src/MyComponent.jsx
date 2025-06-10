@@ -1,56 +1,33 @@
-// updater function = A funcion passed as an argument to setState() usually
-//                    ex. setYear(updater function(usually arrow function))
-//                    Allow for safe updates based on the previous state 
-//                    Used with multiple state updates and asynchronous functions
-//                    Good practice to use updater functions always
 
 import React, {useState} from "react";
 
 function MyComponent() {
 
-    const [count, setCount] = useState(0);
+    const [car, setCar] = useState({year: 2024,
+                                    make: "Ford",
+                                    model: "Mustang"});
 
-    const increment = () => {
-        // // Uses the CURRENT state to calculate the NEXT state.
-        // // set functions do not trigger an update.
-        // // React batches together update for performance reasons.
-        // // NEXT state becomes the CURRENT state after an update.
-
-        // setCount(count + 1);
-        // setCount(count + 1);
-        // setCount(count + 1);
-        // // UPDATE
-
-
-
-        // Instead, use updater function!
-        // Takes the PENDING state to calculate Next state.
-        // React puts your updater function in a queue(waiting in line)
-        // During the next render, React will call them in the same order.
-        setCount(c => c + 1);
-        setCount(c => c + 1);
-        setCount(c => c + 1);
+    function handleYearChage(event) {
+        setCar(c => ({...c, year: event.target.value}));
     }
 
-    const decrement = () => {
-        setCount(c => c - 1);
-        setCount(c => c - 1);
-        setCount(c => c - 1);
+    function handleMakeChage(event) {
+        setCar(c => ({...c, make: event.target.value}))
     }
 
-    const reset = () => {
-        setCount(0);
+    function handleModelChage(event) {
+        setCar(c => ({...c, model: event.target.value}))
     }
 
     return(
-        <div className="counter-container">
-            <p className="count-display">{count}</p>
-            <button className="counter-button" onClick={decrement}>Decrement</button>
-            <button className="counter-button" onClick={reset}>Reset</button>
-            <button className="counter-button" onClick={increment}>Increment</button>
+        <div>
+            <p>Your favorite car is: {car.year} {car.make} {car.model}</p>
+
+            <input type="number" value={car.year} onChange={handleYearChage}/><br/>
+            <input type="text" value={car.make} onChange={handleMakeChage}/><br/>
+            <input type="text" value={car.model} onChange={handleModelChage}/><br/>
         </div>
     );
-
 }
 
 export default MyComponent
