@@ -1,8 +1,13 @@
-import DigitalClock from "./DigitalClock";
+// useContect() = React Hook that allows you to share values
+//                between multiple levels of components
+//                without passing props through each level
+
+import ComponentA from "./ComponentA";
+import React from "react";
 
 function App() {
 
-  return(<DigitalClock/>);
+  return(<ComponentA/>);
 }
 
 export default App
